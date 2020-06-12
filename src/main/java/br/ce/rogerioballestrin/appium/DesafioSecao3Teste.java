@@ -1,65 +1,57 @@
 package br.ce.rogerioballestrin.appium;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
+import br.ce.rogerioballestrin.appium.core.DSL;
+import br.ce.rogerioballestrin.appium.core.DriverFactory;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
 
 public class DesafioSecao3Teste {
-
+	
+	private AndroidDriver<MobileElement> driver;
+	private DSL dsl = new DSL();
+	
+	@Before
+	public void inicializarAppium() throws MalformedURLException {
+		driver = DriverFactory.getDriver();
+	 // Selecionar formulario
+	    driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
+	}
+	
 	@Test
 	public void deveSalvarFormulario() throws MalformedURLException {
-		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-	    desiredCapabilities.setCapability("platformName", "Android");
-	    desiredCapabilities.setCapability("deviceName", "emulator-5554");
-	    desiredCapabilities.setCapability("automationName", "uiautomator2");
-	    desiredCapabilities.setCapability("appPackage", "com.ctappium");
-	    desiredCapabilities.setCapability("appActivity", "com.ctappium.MainActivity");
-	    
-	    AndroidDriver<MobileElement> driver= new AndroidDriver(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
-	    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-	    
-	    // Selecionar formulario
-	    driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
-	    
 	    // Escrever Nome
-	    MobileElement campoNome = driver.findElement(MobileBy.AccessibilityId("nome"));
-	    campoNome.sendKeys("Rogério");
+		dsl.escrever(MobileBy.AccessibilityId("nome"), "Rogério");
 	    
-	    // Clicar no combo
-	    driver.findElement(MobileBy.AccessibilityId("console")).click();
-	    
+	    // Clicar no combo 
 	    //Selecionar opção desejada
-	    driver.findElement(By.xpath("//android.widget.CheckedTextView[@text='PS4']")).click();;
+	    dsl.selecionarCombo(MobileBy.AccessibilityId("console"), "PS4");
 	    
 	    //Clicar no combo
-	    driver.findElement(By.className("android.widget.CheckBox")).click();;
-	    driver.findElement(MobileBy.AccessibilityId("switch")).click();
+	    dsl.clicar(By.className("android.widget.CheckBox"));;
+	    dsl.clicar(MobileBy.AccessibilityId("switch"));
 	    
 	    //Clicar em salvar
-	    driver.findElement(By.xpath("//android.widget.TextView[@text='SALVAR']")).click();
+	    dsl.clicar(By.xpath("//android.widget.TextView[@text='SALVAR']"));
 	    
 	    //Verificar ações salvas
-	    String nome = driver.findElement(By.xpath("//android.widget.TextView[@index='12']")).getText();
-	    String console = driver.findElement(By.xpath("//android.widget.TextView[@index='13']")).getText();
-	    String sw = driver.findElement(By.xpath("//android.widget.TextView[@index='15']")).getText();
-	    String checkbox = driver.findElement(By.xpath("//android.widget.TextView[@index='16']")).getText();
-	    Assert.assertEquals("Nome: Rogério", nome);
-	    Assert.assertEquals("Console: ps4", console);
-	    Assert.assertEquals("Switch: Off", sw);
-	    Assert.assertEquals("Checkbox: Marcado", checkbox);
-
-	    
-	    driver.quit();
+	    Assert.assertEquals("Nome: Rogério", dsl.obterTexto(By.xpath("//android.widget.TextView[@index='12']")));
+	    Assert.assertEquals("Console: ps4", dsl.obterTexto(By.xpath("//android.widget.TextView[@index='13']")));
+	    Assert.assertEquals("Switch: Off", dsl.obterTexto(By.xpath("//android.widget.TextView[@index='15']")));
+	    Assert.assertEquals("Checkbox: Marcado", dsl.obterTexto(By.xpath("//android.widget.TextView[@index='16']")));
+	}
+	
+	@After
+	public void tearDown() {
+		DriverFactory.killDriver();
 	}
 }
