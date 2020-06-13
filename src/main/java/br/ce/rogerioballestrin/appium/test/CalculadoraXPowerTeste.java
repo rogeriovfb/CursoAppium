@@ -1,4 +1,4 @@
-package br.ce.rogerioballestrin.appium;
+package br.ce.rogerioballestrin.appium.test;
 
 import java.net.MalformedURLException;
 import java.net.URL;

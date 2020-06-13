@@ -16,7 +16,7 @@ public class DSL {
 	}
 	
 	public void clicarPorTexto(String texto) {
-		clicar(By.xpath("//android.widget.CheckedTextView[@text='"+texto+"']"));
+		clicar(By.xpath("//*[@text='"+texto+"']"));
 	}
 	
 	public void selecionarCombo(By by, String valor) {
@@ -31,6 +31,10 @@ public class DSL {
 	
 	public void clicar(By by) {
 		getDriver().findElement(by).click();
+	}
+	
+	public String obterValorSalvo(String index) {
+		return obterTexto(By.xpath("//android.widget.TextView[@index="+index+"]"));
 	}
 
 }
