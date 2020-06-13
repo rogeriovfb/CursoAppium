@@ -1,7 +1,5 @@
 package br.ce.rogerioballestrin.appium.test;
 
-import java.net.MalformedURLException;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,16 +17,15 @@ public class DesafioSecao3Teste {
 	private FormularioPage page = new FormularioPage();
 	
 	@Before
-	public void inicializarAppium() throws MalformedURLException {
+	public void inicializarAppium() {
 		menu.acessarFormulario();
 	}
 	
 	@Test
-	public void deveSalvarFormulario() throws MalformedURLException {
+	public void deveSalvarFormulario() {
 	    // Escrever Nome
 	    page.escreverNome("Rogério");
 	    
-	    // Clicar no combo 
 	    //Selecionar opção desejada
 		page.selecionarCombo("PS4");
 	    
