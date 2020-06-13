@@ -1,13 +1,14 @@
 package br.ce.rogerioballestrin.appium.page;
 
-import br.ce.rogerioballestrin.appium.core.DSL;
+import br.ce.rogerioballestrin.appium.core.BasePage;
+import br.ce.rogerioballestrin.appium.core.DriverFactory;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 
-public class MenuPage {
+public class MenuPage extends BasePage{
 	
-	private DSL dsl = new DSL();
-
-
 	public void acessarFormulario() {
-		dsl.clicarPorTexto("Formulário");
+		DriverFactory.getDriver();
+		clicarPorTexto("Formulário");
 	}
 }

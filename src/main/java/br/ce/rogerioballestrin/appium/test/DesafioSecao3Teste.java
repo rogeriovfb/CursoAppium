@@ -10,20 +10,16 @@ import org.junit.Test;
 import br.ce.rogerioballestrin.appium.core.DriverFactory;
 import br.ce.rogerioballestrin.appium.page.FormularioPage;
 import br.ce.rogerioballestrin.appium.page.MenuPage;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 
 
 public class DesafioSecao3Teste {
 	
-	private AndroidDriver<MobileElement> driver;
 	private MenuPage menu = new MenuPage();
 	
 	private FormularioPage page = new FormularioPage();
 	
 	@Before
 	public void inicializarAppium() throws MalformedURLException {
-		driver = DriverFactory.getDriver();
 		menu.acessarFormulario();
 	}
 	

@@ -2,27 +2,21 @@ package br.ce.rogerioballestrin.appium.test;
 
 import java.net.MalformedURLException;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import br.ce.rogerioballestrin.appium.core.DriverFactory;
+import br.ce.rogerioballestrin.appium.core.BaseTest;
 import br.ce.rogerioballestrin.appium.page.FormularioPage;
 import br.ce.rogerioballestrin.appium.page.MenuPage;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 
 
-public class FormularioTeste {
-	private AndroidDriver<MobileElement> driver;	
+public class FormularioTeste extends BaseTest{
 	private MenuPage menu = new MenuPage();
-	
 	private FormularioPage page = new FormularioPage();
 	
 	@Before
 	public void inicializarAppium() throws MalformedURLException {
-		driver = DriverFactory.getDriver();
 		menu.acessarFormulario();
 	}
 	
@@ -49,10 +43,5 @@ public class FormularioTeste {
 	    // verificar estados alterados
 	    Assert.assertTrue(page.isCheckMarcado());
 	    Assert.assertFalse(page.isSwMarcado());
-	}
-
-	@After
-	public void tearDown() {
-		DriverFactory.killDriver();
 	}
 }
