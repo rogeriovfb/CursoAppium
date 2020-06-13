@@ -44,6 +44,10 @@ public class FormularioPage extends BasePage{
 	    clicarPorTexto("SALVAR");
 	}
 	
+	public void salvarDemorado() {
+		clicarPorTexto("SALVAR DEMORADO");
+	}
+	
 	public String obterNomeSalvo() {
 		return obterValorSalvo("12");
 	}
@@ -57,4 +61,3 @@ public class FormularioPage extends BasePage{
 		return obterValorSalvo("16");
 	}
 }
-	

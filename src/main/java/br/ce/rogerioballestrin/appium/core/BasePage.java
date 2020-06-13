@@ -2,7 +2,11 @@ package br.ce.rogerioballestrin.appium.core;
 
 import static br.ce.rogerioballestrin.appium.core.DriverFactory.getDriver;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
+
+import io.appium.java_client.MobileElement;
 
 public class BasePage {
 	public void escrever(By by, String texto) {
@@ -34,6 +38,11 @@ public class BasePage {
 	
 	public String obterValorSalvo(String index) {
 		return obterTexto(By.xpath("//android.widget.TextView[@index="+index+"]"));
+	}
+	
+	public boolean existeElementoPorTexto(String texto) {
+		List<MobileElement> elementos = getDriver().findElements(By.xpath("//*[@text='"+texto+"']"));
+		return elementos.size() > 0;
 	}
 
 }

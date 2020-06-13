@@ -42,4 +42,36 @@ public class FormularioTeste extends BaseTest{
 	    Assert.assertTrue(page.isCheckMarcado());
 	    Assert.assertFalse(page.isSwMarcado());
 	}
+	
+	@Test
+	public void deveSalvarFormularioDemorado() {
+	    // Escrever Nome
+	    page.escreverNome("Rogério");
+	    
+	    //Selecionar opção desejada
+		page.selecionarCombo("PS4");
+	    
+	    //Clicar no sw e checkbox
+	    page.clicarCheck();
+	    page.clicarsw();
+	    
+	    //Clicar em salvar
+	    page.salvarDemorado();
+	    
+	    //Verificar ações salvas
+	    Assert.assertEquals("Nome: Rogério", page.obterNomeSalvo());
+	    Assert.assertEquals("Console: ps4", page.obterConsoleSalvo());
+	    Assert.assertEquals("Switch: Off", page.obterSwitchSalvo());
+	    Assert.assertEquals("Checkbox: Marcado", page.obterCheckboxSalvo());
+	}
+	
+	public void esperar(long tempo) {
+		try {
+			Thread.sleep(tempo);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

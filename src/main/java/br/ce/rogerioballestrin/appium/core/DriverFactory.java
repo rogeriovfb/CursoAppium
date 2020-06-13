@@ -4,11 +4,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.MobileCapabilityType;
 
 public class DriverFactory {
 	
@@ -26,19 +26,14 @@ public class DriverFactory {
 	    desiredCapabilities.setCapability("platformName", "Android");
 	    desiredCapabilities.setCapability("deviceName", "emulator-5554");
 	    desiredCapabilities.setCapability("automationName", "uiautomator2");
-	    desiredCapabilities.setCapability("appPackage", "com.ctappium");
-	    desiredCapabilities.setCapability("appActivity", "com.ctappium.MainActivity");
+	    desiredCapabilities.setCapability(MobileCapabilityType.APP, "C:\\Users\\Rogerio Ballestrin\\eclipse-workspace\\CursoAppium\\CTAppium.apk");
 	    
 	    try {
 			driver= new AndroidDriver<MobileElement>(new URL("http://localhost:4723/wd/hub"), desiredCapabilities);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-	    
-	 // Selecionar formulario
-	    driver.findElement(By.xpath("//android.widget.TextView[@text='Formulário']")).click();
 	}
 	
 	public static void killDriver() {
