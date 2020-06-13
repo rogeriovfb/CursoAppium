@@ -13,4 +13,13 @@ public class MenuPage extends BasePage{
 		//DriverFactory.getDriver();
 		clicarPorTexto("Splash");
 	}
+	
+	public void acessarAlertas() {
+		//DriverFactory.getDriver();
+		clicarPorTexto("Alertas");
+	}
+	
+	public void acessarAbas() {
+		clicarPorTexto("Abas");
+	}
 }
