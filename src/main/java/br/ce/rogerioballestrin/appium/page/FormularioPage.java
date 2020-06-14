@@ -3,7 +3,9 @@ package br.ce.rogerioballestrin.appium.page;
 import org.openqa.selenium.By;
 
 import br.ce.rogerioballestrin.appium.core.BasePage;
+import br.ce.rogerioballestrin.appium.core.DriverFactory;
 import io.appium.java_client.MobileBy;
+import io.appium.java_client.MobileElement;
 
 public class FormularioPage extends BasePage{
 	
@@ -40,6 +42,17 @@ public class FormularioPage extends BasePage{
 		return ischeckedMarcado(MobileBy.AccessibilityId("switch"));
 	}
 	
+	public void clicarSeekBar(double posicao) {
+		int delta = -10;
+		MobileElement seek = DriverFactory.getDriver().findElement(MobileBy.AccessibilityId("slid"));
+		int y = seek.getLocation().y + (seek.getSize().height)/2;
+		int x = (int) (seek.getLocation().x + delta + ((seek.getSize().width-delta)*posicao));
+		
+		
+		System.out.println(x);
+		tap(x, y);
+	}
+	
 	public void salvar() {
 	    clicarPorTexto("SALVAR");
 	}
@@ -54,10 +67,14 @@ public class FormularioPage extends BasePage{
 	public String obterConsoleSalvo() {
 		return obterValorSalvo("13");
 	}
+	public String obterSliderSalvo() {
+		return obterValorSalvo("14");
+	}
 	public String obterSwitchSalvo() {
 		return obterValorSalvo("15");
 	}
 	public String obterCheckboxSalvo() {
 		return obterValorSalvo("16");
 	}
+	
 }
