@@ -25,4 +25,12 @@ public class AlertaPage extends BasePage {
 	public void sair() {
 		clicarPorTexto("SAIR");
 	}
+	
+	public void clicarAlertaSimples() {
+		clicarPorTexto("ALERTA SIMPLES");
+	}
+	
+	public void clicarForaCaixa() {
+		tap(100,150);
+	}
 }
