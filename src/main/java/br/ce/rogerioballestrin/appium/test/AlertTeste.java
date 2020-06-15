@@ -32,6 +32,7 @@ public class AlertTeste extends BaseTest {
 		//verificar nova mensagem
 		Assert.assertEquals("Confirmado", page.obterMensagemAlerta());
 		//sair
+		esperar(500);
 		page.sair();
 		
 	}
