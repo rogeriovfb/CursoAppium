@@ -65,7 +65,23 @@ public class BasePage {
 		int x = tamanho.width / 2;
 		int yInicial = (int) (tamanho.height*inicio);
 		int yFinal = (int) (tamanho.height*fim);
-		new TouchAction(DriverFactory.getDriver()).press(x, yInicial).waitAction(Duration.ofMillis(500)).moveTo(x, yFinal).release().perform();
+		new TouchAction(DriverFactory.getDriver())
+			.press(x, yInicial)
+			.waitAction(Duration.ofMillis(500))
+			.moveTo(x, yFinal)
+			.release().perform();
+	}
+	
+	public void swipe(double inicio, double fim) {
+		Dimension tamanho = DriverFactory.getDriver().manage().window().getSize();
+		int y = tamanho.height / 2;
+		int start_x = (int) (tamanho.width * inicio);
+		int end_x = (int) (tamanho.width * fim);
+		new TouchAction(DriverFactory.getDriver())
+			.press(start_x, y)
+			.waitAction(Duration.ofMillis(500))
+			.moveTo(end_x, y)
+			.release().perform();
 	}
 
 }
